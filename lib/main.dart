@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+
       ),
       home: const MyHomePage(),
       routes: {
@@ -48,26 +48,33 @@ class MyHomePage extends StatelessWidget {
     final _menuListController = Get.put(Controller());
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: const Text('GridView builder'),),
+      appBar: AppBar(
+        title: const Text('GridView builder'),
+       
+      ),
       body: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 1.0,
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,),
+          padding: const EdgeInsets.all(10),
           itemCount: _menuListController.menuList.length,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index){
            _menuListController.Gridindex.value =index;
-           final menu = _menuListController.menuList[_menuListController.Gridindex.value];
-
+           final menu = _menuListController.menuList[index];
         return GestureDetector(
           onTap: (){
-            Navigator.of(context).pushNamed(menu.route);
+            Navigator.of(context).pushNamed(menu.route, arguments: menu.title);
           },
           child: Container(
             height: size.height*0.2,
-            color: Colors.blue,
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).primaryColor,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
