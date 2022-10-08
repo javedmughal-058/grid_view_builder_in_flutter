@@ -8,13 +8,9 @@ class verifiedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final Controller _menuListController =(Get.find());
-
-    final menu = _menuListController.menuList[_menuListController.Gridindex.value];
-
+    final textValue = Get.arguments.toString();
     return Scaffold(
-      appBar: AppBar(title: Text(menu.title),),
+      appBar: AppBar(title: Text(textValue),),
     );
   }
 }
