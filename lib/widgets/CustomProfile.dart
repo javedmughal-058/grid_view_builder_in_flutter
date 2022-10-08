@@ -1,178 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grid_view_builder_in_flutter/Controllers/Controller.dart';
 class CustomProfile extends StatelessWidget {
   const CustomProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _profileListController = Get.put(Controller());
     final size = MediaQuery.of(context).size;
     return Scaffold(
-
         body: Stack(
           clipBehavior: Clip.none,
-
           children: [
             Container(
-               margin: EdgeInsets.only(
-                 top: size.width * 0.02,
-              ),
-              //padding: EdgeInsets.only(top: size.width * 10),
-              //height: size.width * 10,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.2),
-                  // boxShadow: const [
-                  //   BoxShadow(
-                  //     color: Colors.black54,
-                  //     blurRadius: 3.0,
-                  //   ),
-                  // ],
-                  borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          MaterialButton(
-                            onPressed: () {},
-                            color: Colors.white,
-                            textColor: const Color(0xff34495E),
-                            child: const Icon(
-                              Icons.person,
-                              size: 50,
-                            ),
-                            padding: const EdgeInsets.all(16),
-                            shape: const CircleBorder(),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "Works",
-                            // style: GoogleFonts.roboto(
-                            //     color: Color(0xff34495E),
-                            //     fontWeight: FontWeight.w600,
-                            //     fontSize: 15),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          MaterialButton(
-                            onPressed: () {},
-                            color: Colors.white,
-                            textColor: const Color(0xff34495E),
-                            child: const Icon(
-                              Icons.map,
-                              size: 50,
-                            ),
-                            padding: const EdgeInsets.all(16),
-                            shape: const CircleBorder(),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "Map",
-                            // style: GoogleFonts.roboto(
-                            //     color: Color(0xff34495E),
-                            //     fontWeight: FontWeight.w600,
-                            //     fontSize: 15),
-                          )
-                        ],
-                      ),
+               margin: EdgeInsets.only(top: size.width * 0.02,),
 
-/*                      Icon(FontAwesomeIcons.truck),
-                          Icon(FontAwesomeIcons.wallet),
-                          Icon(FontAwesomeIcons.userAlt)*/
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children:  [
-                          MaterialButton(
-                            onPressed: () {},
-                            color: Colors.white,
-                            textColor: const Color(0xff34495E),
-                            child: const Icon(
-                            Icons.wallet_giftcard,
-                              size: 50,
+              decoration:  const BoxDecoration(
+                
+                  //color: Theme.of(context).primaryColor.withOpacity(0.2),
+                  borderRadius:   BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15) )),
+              child: Container(
+                margin: const EdgeInsets.fromLTRB(25, 80, 25, 80),
+                decoration: BoxDecoration(
+
+                    borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.blue, width: 1)
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          //mainAxisExtent: 70.0,
+                          childAspectRatio: 1.0,
+                          //mainAxisSpacing: 8.0,
+                          crossAxisSpacing: 4.0,
+                    ),
+                        padding: const EdgeInsets.all(10),
+                        itemCount: _profileListController.profileItemList.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index){
+                          final profilemenu = _profileListController.profileItemList[index];
+                          return Column(
+                          children: [
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(profilemenu.route);
+                              },
+                              color: Theme.of(context).primaryColor.withOpacity(0.7),
+                              textColor: const Color(0xff34495E),
+                              child:  Icon(profilemenu.icon, color: profilemenu.color,),
+                              padding: const EdgeInsets.all(16),
+                              shape: const CircleBorder(),
                             ),
-                            padding: const EdgeInsets.all(16),
-                            shape: const CircleBorder(),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "Wallet",
-                          //   style: GoogleFonts.roboto(
-                          //       color: Color(0xff34495E),
-                          //       fontWeight: FontWeight.w600,
-                          //       fontSize: 15),
-                          )
-                        ]
-                      ),
-                      Column(
-                        children: [
-                          MaterialButton(
-                            onPressed: () {},
-                            color: Colors.white,
-                            textColor: const Color(0xff34495E),
-                            child: const Icon(
-                              Icons.person,
-                              size: 50,
+                            const SizedBox(
+                              height: 2,
                             ),
-                            padding: const EdgeInsets.all(16),
-                            shape: const CircleBorder(),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "Account",
-                            // style: GoogleFonts.roboto(
-                            //     color: Color(0xff34495E),
-                            //     fontWeight: FontWeight.w600,
-                            //     fontSize: 15),
-                          )
-                        ],
-                      ),
-/*                      Icon(FontAwesomeIcons.truck),
-                          Icon(FontAwesomeIcons.wallet),
-                          Icon(FontAwesomeIcons.userAlt)*/
-                    ],
-                  ),
-                ],
+                            Text(profilemenu.title, style: Theme.of(context).textTheme.bodyText1,
+                            )
+                          ],
+                        );
+                      }
+                    ),
+                  ],
+                ),
               ),
             ),
             Positioned(
               child: Container(
-                margin: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15) ),
+                margin: const EdgeInsets.only(top: 35),
+                decoration: const BoxDecoration(
+                  borderRadius:  BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15) ),
 
                 ),
                 width: size.width,
                // height: size.height * 25,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  //mainAxisAlignment: MainAxisAlignment.start,
                   children:  [
-                    SizedBox(height: size.height*0.02,),
-                    const Text(
-                      "Muhammad Javed",
-                      // style: GoogleFonts.roboto(
-                      //     color: Color(0xffffffff),
-                      //     fontWeight: FontWeight.bold,
-                      //     fontSize: 20),
+                     CircleAvatar(
+                        maxRadius: 50,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        backgroundImage: const AssetImage('images/person.png',)),
+
+                     Text(
+                      "Muhammad Javed", style: Theme.of(context).textTheme.headline6,
                     ),
-                    const Text("Android Developer",
-                        // style: GoogleFonts.roboto(
-                        //     fontSize: 15, color: Colors.white)
-                    ),
+                     Text("Android Developer", style: Theme.of(context).textTheme.subtitle2,)
                   ],
                 ),
               ),
