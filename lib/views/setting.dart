@@ -94,13 +94,15 @@ class _SettingPageState extends State<SettingPage> {
                             _colorController.checkThemeColor.value = true;
 
                           });
-                          String _storeColorValue = _colorController.colorsList[index].color!.value.toString() ;
-                          int value = int.parse(_storeColorValue);
-                          final SharedPreferences prefs = await SharedPreferences.getInstance();
-                          prefs.setInt('ThemeColor', value);
-                          _colorController.checkThemeColor.value?
-                          Get.to(const MyHomePage()):
-                          Get.back();
+                          // String stringColor = _colorController.colorsList[index].color!.toString();
+                          // String valueString = stringColor.split('(0x')[1].split(')')[0]; // kind of hacky..
+                          // int value = int.parse(valueString, radix: 16);
+                          //int value = int.parse(_storeColorValue);
+                          // final SharedPreferences prefs = await SharedPreferences.getInstance();
+                          // prefs.setInt('ThemeColor', value);
+
+                          Navigator.of(context).pop();
+                          Get.to(SettingPage());
 
                         },
                       );
