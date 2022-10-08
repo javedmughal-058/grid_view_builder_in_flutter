@@ -7,6 +7,7 @@ import 'package:grid_view_builder_in_flutter/views/detail.dart';
 import 'package:grid_view_builder_in_flutter/views/search.dart';
 import 'package:grid_view_builder_in_flutter/views/setting.dart';
 import 'package:grid_view_builder_in_flutter/views/verify.dart';
+import 'package:grid_view_builder_in_flutter/widgets/customTabBar.dart';
 
 import 'menu_model.dart';
 
@@ -47,6 +48,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _menuListController = Get.put(Controller());
     final size = MediaQuery.of(context).size;
+    double gridviewHeight = size.height * 0.275;
     return Scaffold(
       appBar: AppBar(
         title: const Text('GridView builder'),
@@ -65,54 +67,63 @@ class MyHomePage extends StatelessWidget {
             ),
               const Icon(Icons.android, size: 32,),
           ],),
-         GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              mainAxisExtent: 70.0,
-              childAspectRatio: 1.0,
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,),
-              padding: const EdgeInsets.all(10),
-              itemCount: _menuListController.menuList.length,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index){
-               _menuListController.Gridindex.value =index;
-               final menu = _menuListController.menuList[index];
-            return GestureDetector(
-              onTap: (){
-                Navigator.of(context).pushNamed(menu.route, arguments: menu.title);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.7), width: 1),
-                  color: Theme.of(context).primaryColor.withOpacity(0.2),
+          Obx(()=>AnimatedContainer(
+            duration: const Duration(seconds: 1),
+            width: size.width,
+            height: _menuListController.homeTab.value == 0 ||
+                _menuListController.homeTab.value == 1 ||
+                _menuListController.homeTab.value == 2 ? gridviewHeight : 0 ,
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisExtent: 70.0,
+                childAspectRatio: 1.0,
+                mainAxisSpacing: 8.0,
+                crossAxisSpacing: 8.0,),
+                padding: const EdgeInsets.all(10),
+                itemCount: _menuListController.menuList.length,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index){
+                 _menuListController.Gridindex.value =index;
+                 final menu = _menuListController.menuList[index];
+              return GestureDetector(
+                onTap: (){
+                  Navigator.of(context).pushNamed(menu.route, arguments: menu.title);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.7), width: 1),
+                    color: Theme.of(context).primaryColor.withOpacity(0.2),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black26,width: 1),
+                              shape: BoxShape.circle
+                          ),
+                          child: Icon(menu.icon,color: Colors.black26,size: 16,)
+                      ),
+                      const SizedBox(height: 5,),
+                      Text(menu.title, style: const TextStyle(fontSize: 10.0)),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.all(4.0),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black26,width: 1),
-                            shape: BoxShape.circle
-                        ),
-                        child: Icon(menu.icon,color: Colors.black26,size: 16,)
-                    ),
-                    const SizedBox(height: 5,),
-                    Text(menu.title, style: const TextStyle(fontSize: 10.0)),
-                  ],
-                ),
-              ),
-            );
+              );
 
-              }),
+                }),
+          )),
+          Expanded(child: CustomTabBar())
 
         ],
       ),
     );
   }
 }
+
 
