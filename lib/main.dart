@@ -50,7 +50,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GridView builder'),
-       
+        actions: [IconButton(onPressed: (){
+          Get.changeTheme(Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+        }, icon:const Icon(Icons.change_circle))],
       ),
       body: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
