@@ -30,79 +30,7 @@ class _SettingPageState extends State<SettingPage> {
                 },
                 itemBuilder: (BuildContext context,int index){
                   return ListTile(
-                    dense: true,
-                    onTap: (){
-                      showDialog(context: context, builder: (builder){
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          title: const Text("Change Theme"),
-                          content: const Text("Are you sure? You want to change theme colors!",style: TextStyle(
-                              color: Colors.black,fontSize: 14.0
-                          )),
-                          actions: [
-                            TextButton(
-                                onPressed: (){
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('No')
-                            ),
-                            TextButton(
-                                onPressed: () async {
-                                  setState(() {
-                                    Get.changeTheme(ThemeData(
-                                      appBarTheme: AppBarTheme(
-                                        elevation: 0.0,
-                                        backgroundColor: _colorController.colorsList[index].color!,
-                                      ),
-                                      primaryColor: _colorController.colorsList[index].color!,
-                                      textTheme: TextTheme(
-                                        headline1: GoogleFonts.lato(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.blueAccent,
-                                          fontSize: 18,
-                                        ),
-                                        headline2: GoogleFonts.lato(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                        ),
-                                        subtitle1: GoogleFonts.lato(
-                                          color: Colors.white,
-                                          fontSize: 14,
-
-                                        ),
-                                        subtitle2: GoogleFonts.lato(
-                                          color: Colors.black,
-                                          fontSize: 14,
-
-                                        ),
-                                        bodyText1: GoogleFonts.lato(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),);
-                                    _colorController.checkThemeColor.value = true;
-
-                                  });
-                                  String _storeColorValue = _colorController.colorsList[index].color!.value.toString() ;
-                                  int value = int.parse(_storeColorValue);
-                                  final SharedPreferences prefs = await SharedPreferences.getInstance();
-                                  prefs.setInt('ThemeColor', value);
-                                  _colorController.checkThemeColor.value?
-                                  Get.to(const MyHomePage()):
-                                  Get.back();
-                                },
-                                child: Text('Yes',style: TextStyle(color: Colors.red),)
-                            )
-                          ],
-                        );
-                      });
-                    },
-                    leading: Container(
+                    trailing: Container(
                       width: 30,
                       height: 30,
                       decoration: BoxDecoration(
@@ -110,6 +38,75 @@ class _SettingPageState extends State<SettingPage> {
                           shape: BoxShape.circle
                       ),
                     ),
+                    dense: true,
+                    onTap: (){
+                      Get.defaultDialog(
+                        title: 'Alert!',
+                        titleStyle:
+                        const TextStyle(color: Colors.red),
+                        middleText: 'Do you want to change theme?',
+                        middleTextStyle: Theme.of(context).textTheme.bodyText1,
+                        textCancel: 'Cancel',
+                        //cancelTextColor: Colors.blue,
+                        textConfirm: 'Confirm',
+                        confirmTextColor: Colors.white,
+                        onCancel: () {
+                          Navigator.of(context).pop();
+                         Get.to(SettingPage());
+
+                        },
+                        onConfirm: () async{
+                          setState(() {
+                            Get.changeTheme(ThemeData(
+                              appBarTheme: AppBarTheme(
+                                elevation: 0.0,
+                                backgroundColor: _colorController.colorsList[index].color!,
+                              ),
+                              primaryColor: _colorController.colorsList[index].color!,
+                              textTheme: TextTheme(
+                                headline1: GoogleFonts.lato(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blueAccent,
+                                  fontSize: 18,
+                                ),
+                                headline2: GoogleFonts.lato(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                                subtitle1: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontSize: 14,
+
+                                ),
+                                subtitle2: GoogleFonts.lato(
+                                  color: Colors.black,
+                                  fontSize: 14,
+
+                                ),
+                                bodyText1: GoogleFonts.lato(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),);
+                            _colorController.checkThemeColor.value = true;
+
+                          });
+                          String _storeColorValue = _colorController.colorsList[index].color!.value.toString() ;
+                          int value = int.parse(_storeColorValue);
+                          final SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setInt('ThemeColor', value);
+                          _colorController.checkThemeColor.value?
+                          Get.to(const MyHomePage()):
+                          Get.back();
+
+                        },
+                      );
+
+                    },
+
                     title: Text(_colorController.colorsList[index].colorName==null?"":_colorController.colorsList[index].colorName!,
                       style: Theme.of(context).textTheme.subtitle2,),
                   );
