@@ -54,49 +54,64 @@ class MyHomePage extends StatelessWidget {
           Get.changeTheme(Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
         }, icon:const Icon(Icons.change_circle))],
       ),
-      body: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisExtent: 70.0,
-        childAspectRatio: 1.0,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,),
-          padding: const EdgeInsets.all(10),
-          itemCount: _menuListController.menuList.length,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index){
-           _menuListController.Gridindex.value =index;
-           final menu = _menuListController.menuList[index];
-        return GestureDetector(
-          onTap: (){
-            Navigator.of(context).pushNamed(menu.route, arguments: menu.title);
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.7), width: 1),
-              color: Theme.of(context).primaryColor.withOpacity(0.2),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:  [
+              const Text('Developers', style: TextStyle(fontSize: 20),),
+            SizedBox(
+              width: size.width*0.03,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    padding: const EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black26,width: 1),
-                        shape: BoxShape.circle
-                    ),
-                    child: Icon(menu.icon,color: Colors.black26,size: 16,)
+              const Icon(Icons.android, size: 32,),
+          ],),
+         GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisExtent: 70.0,
+              childAspectRatio: 1.0,
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 8.0,),
+              padding: const EdgeInsets.all(10),
+              itemCount: _menuListController.menuList.length,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index){
+               _menuListController.Gridindex.value =index;
+               final menu = _menuListController.menuList[index];
+            return GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed(menu.route, arguments: menu.title);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.7), width: 1),
+                  color: Theme.of(context).primaryColor.withOpacity(0.2),
                 ),
-                const SizedBox(height: 5,),
-                Text(menu.title, style: const TextStyle(fontSize: 10.0)),
-              ],
-            ),
-          ),
-        );
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.all(4.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black26,width: 1),
+                            shape: BoxShape.circle
+                        ),
+                        child: Icon(menu.icon,color: Colors.black26,size: 16,)
+                    ),
+                    const SizedBox(height: 5,),
+                    Text(menu.title, style: const TextStyle(fontSize: 10.0)),
+                  ],
+                ),
+              ),
+            );
 
-          }),
+              }),
+
+        ],
+      ),
     );
   }
 }
