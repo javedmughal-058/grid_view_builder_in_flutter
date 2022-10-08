@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grid_view_builder_in_flutter/menu_model.dart';
+import 'package:grid_view_builder_in_flutter/Models/menu_model.dart';
+import 'package:grid_view_builder_in_flutter/Models/profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Controller extends GetxController{
@@ -19,13 +20,21 @@ class Controller extends GetxController{
 
   }
 
-  final menuList = [
+  final menuList = <MenuModel>[
     MenuModel(title: 'About us', color: Colors.amber, route: '/About', icon: Icons.info,  ),
     MenuModel(title: 'Setting', color: Colors.amber, route: '/Setting', icon: Icons.settings,),
     MenuModel(title: 'Search', color: Colors.amber, route: '/search', icon: Icons.search,  ),
     MenuModel(title: 'Details', color: Colors.amber, route: '/detail', icon: Icons.details,  ),
     MenuModel(title: 'Verification', color: Colors.amber, route: '/verified', icon: Icons.verified,  ),
     MenuModel(title: 'Contact us', color: Colors.amber, route: '/contact', icon: Icons.call,  ),
+  ];
+
+  final profileItemList = <ProfileModel>[
+    ProfileModel(title: 'Works', color: Colors.white, route: '/About', icon: Icons.work,  ),
+    ProfileModel(title: 'Map', color: Colors.white, route: '/Setting', icon: Icons.map,),
+    ProfileModel(title: 'Wallet', color: Colors.white, route: '/search', icon: Icons.wallet_giftcard,  ),
+    ProfileModel(title: 'Account', color: Colors.white, route: '/detail', icon: Icons.person,  ),
+
   ];
 
 
