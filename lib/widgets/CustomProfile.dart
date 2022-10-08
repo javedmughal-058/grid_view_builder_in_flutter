@@ -13,18 +13,25 @@ class CustomProfile extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(
-               margin: EdgeInsets.only(top: size.width * 0.02,),
-
-              decoration:  const BoxDecoration(
-                
-                  //color: Theme.of(context).primaryColor.withOpacity(0.2),
-                  borderRadius:   BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15) )),
+              margin: EdgeInsets.fromLTRB(0, size.width * 0.05,0, size.width * 0.04,),
+              // decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     border: Border.all(color: Colors.white)),
               child: Container(
-                margin: const EdgeInsets.fromLTRB(25, 80, 25, 80),
+                margin: const EdgeInsets.fromLTRB(25, 55, 25, 55),
                 decoration: BoxDecoration(
+                  color:  Get.isDarkMode ? Colors.black54 : Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
 
                     borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.blue, width: 1)
+                  border: Border.all(color: Colors.grey, width: 1)
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -58,8 +65,8 @@ class CustomProfile extends StatelessWidget {
                             const SizedBox(
                               height: 2,
                             ),
-                            Text(profilemenu.title, style: Theme.of(context).textTheme.bodyText1,
-                            )
+                            Text(profilemenu.title, style: Theme.of(context).textTheme.bodyText1,),
+
                           ],
                         );
                       }
