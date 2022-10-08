@@ -70,9 +70,7 @@ class MyHomePage extends StatelessWidget {
           Obx(()=>AnimatedContainer(
             duration: const Duration(seconds: 1),
             width: size.width,
-            height: _menuListController.homeTab.value == 0 ||
-                _menuListController.homeTab.value == 1 ||
-                _menuListController.homeTab.value == 2 ? gridviewHeight : 0 ,
+            height: _menuListController.homeTab.value == 0 ? gridviewHeight : 0 ,
             child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
