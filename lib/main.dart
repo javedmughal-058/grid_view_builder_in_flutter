@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:grid_view_builder_in_flutter/Controllers/Controller.dart';
 import 'package:grid_view_builder_in_flutter/views/about.dart';
 import 'package:grid_view_builder_in_flutter/views/contact.dart';
@@ -8,8 +9,6 @@ import 'package:grid_view_builder_in_flutter/views/search.dart';
 import 'package:grid_view_builder_in_flutter/views/setting.dart';
 import 'package:grid_view_builder_in_flutter/views/verify.dart';
 import 'package:grid_view_builder_in_flutter/widgets/customTabBar.dart';
-
-import 'menu_model.dart';
 
 
 void main() {
@@ -27,8 +26,35 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        textTheme: TextTheme(
+          headline1: GoogleFonts.lato(
+            fontWeight: FontWeight.bold,
+            color: Colors.blueAccent,
+            fontSize: 18,
+          ),
+          headline2: GoogleFonts.lato(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 18,
+          ),
+          subtitle1: GoogleFonts.lato(
+            color: Colors.white,
+            fontSize: 14,
 
+          ),
+          subtitle2: GoogleFonts.lato(
+            color: Colors.black,
+            fontSize: 14,
+
+          ),
+          bodyText1: GoogleFonts.lato(
+            color: Colors.black,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
+
       home: const MyHomePage(),
       routes: {
         "/About" : (context) =>const AboutPage(),
@@ -38,6 +64,7 @@ class MyApp extends StatelessWidget {
         "/verified" : (context) => const verifiedPage(),
         "/contact" : (context) => const contactPage(),
       }
+
     );
   }
 }
@@ -48,7 +75,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _menuListController = Get.put(Controller());
     final size = MediaQuery.of(context).size;
-    double gridviewHeight = size.height * 0.275;
+    double gridviewHeight = size.height * 0.250;
     return Scaffold(
       appBar: AppBar(
         title: const Text('GridView builder'),
@@ -58,15 +85,15 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:  [
-              const Text('Developers', style: TextStyle(fontSize: 20),),
-            SizedBox(
-              width: size.width*0.03,
-            ),
-              const Icon(Icons.android, size: 32,),
-          ],),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children:  [
+          //     const Text('Developers', style: TextStyle(fontSize: 20),),
+          //   SizedBox(
+          //     width: size.width*0.03,
+          //   ),
+          //     const Icon(Icons.android, size: 32,),
+          // ],),
           Obx(()=>AnimatedContainer(
             duration: const Duration(seconds: 1),
             width: size.width,
