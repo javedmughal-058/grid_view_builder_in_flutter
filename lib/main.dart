@@ -56,6 +56,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
+        mainAxisExtent: 70.0,
         childAspectRatio: 1.0,
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,),
@@ -71,28 +72,25 @@ class MyHomePage extends StatelessWidget {
             Navigator.of(context).pushNamed(menu.route, arguments: menu.title);
           },
           child: Container(
-            height: size.height*0.2,
-
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Theme.of(context).primaryColor,
+              border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.7), width: 1),
+              color: Theme.of(context).primaryColor.withOpacity(0.2),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(4.0),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white,width: 1),
+                        border: Border.all(color: Colors.black26,width: 1),
                         shape: BoxShape.circle
                     ),
-                    child: Icon(menu.icon,color: Colors.white,size: 20,)
+                    child: Icon(menu.icon,color: Colors.black26,size: 16,)
                 ),
                 const SizedBox(height: 5,),
-                Text(menu.title,
-                    style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12.0
-                    )),
+                Text(menu.title, style: const TextStyle(fontSize: 10.0)),
               ],
             ),
           ),
