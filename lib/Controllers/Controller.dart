@@ -7,6 +7,7 @@ class Controller extends GetxController{
 
   late Controller menuListController;
   var Gridindex = 0.obs;
+  var homeTab = 0.obs;
 
   @override
   void onInit() {
