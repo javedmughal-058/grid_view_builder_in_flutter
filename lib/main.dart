@@ -9,6 +9,7 @@ import 'package:grid_view_builder_in_flutter/views/search.dart';
 import 'package:grid_view_builder_in_flutter/views/setting.dart';
 import 'package:grid_view_builder_in_flutter/views/verify.dart';
 import 'package:grid_view_builder_in_flutter/widgets/customTabBar.dart';
+import 'package:grid_view_builder_in_flutter/widgets/customTableView.dart';
 
 
 void main() {
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         "/About" : (context) =>const AboutPage(),
         "/Setting" : (context) => const SettingPage(),
         "/search" : (context) => const searchPage(),
-        "/detail" : (context) => const detailPage(),
+        "/detail" : (context) =>  customTableView(),
         "/verified" : (context) => const verifiedPage(),
         "/contact" : (context) => const contactPage(),
       }
