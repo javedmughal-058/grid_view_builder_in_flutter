@@ -13,6 +13,7 @@ class Controller extends GetxController{
   var homeTab = 0.obs;
   var showLiveCurrencyDialog = true.obs;
   var checkThemeColor = false.obs;
+  var showHead = false.obs;
 
   @override
   void onInit() {
