@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:grid_view_builder_in_flutter/Controllers/Controller.dart';
 import 'package:grid_view_builder_in_flutter/widgets/CustomCurrencyWidget.dart';
 import 'package:grid_view_builder_in_flutter/widgets/CustomProfile.dart';
+import 'package:grid_view_builder_in_flutter/widgets/customTableView.dart';
 class CustomTabBar extends StatelessWidget {
   const CustomTabBar({Key? key}) : super(key: key);
 
@@ -55,7 +56,7 @@ class CustomTabBar extends StatelessWidget {
                     children:  [
                       const Center(child: Text("Announcement"),),
                       CustomCurrencyWidget(size: size, userController: _tabController),
-                      const Center(child: Text("Appointments"),),
+                      customTableView(),
                       CustomProfile(),
                     ],
                   )
