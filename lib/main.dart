@@ -9,7 +9,9 @@ import 'package:grid_view_builder_in_flutter/views/search.dart';
 import 'package:grid_view_builder_in_flutter/views/setting.dart';
 import 'package:grid_view_builder_in_flutter/views/verify.dart';
 import 'package:grid_view_builder_in_flutter/widgets/customTabBar.dart';
-import 'package:grid_view_builder_in_flutter/widgets/customTableView.dart';
+import 'package:grid_view_builder_in_flutter/views/customTableView.dart';
+
+import 'views/login/loginPage.dart';
 
 
 void main() {
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      home: const MyHomePage(),
+      home: const LoginPage(),
       routes: {
         "/About" : (context) =>const AboutPage(),
         "/Setting" : (context) => const SettingPage(),
