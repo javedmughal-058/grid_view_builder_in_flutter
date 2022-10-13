@@ -56,6 +56,7 @@ class _SettingPageState extends State<SettingPage> {
 
                         },
                         onConfirm: () async{
+                          const CircularProgressIndicator();
                           setState(() {
                             Get.changeTheme(ThemeData(
                               appBarTheme: AppBarTheme(
@@ -102,7 +103,7 @@ class _SettingPageState extends State<SettingPage> {
                           // prefs.setInt('ThemeColor', value);
 
                           Navigator.of(context).pop();
-                          Get.to(SettingPage());
+                          Get.to(const MyHomePage());
 
                         },
                       );
