@@ -29,17 +29,19 @@ class LoginPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 30,),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+                  padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const[
-                       Text("Login", style: const TextStyle(color: Colors.white, fontSize: 40),),
-                       SizedBox(height: 10,),
-                      Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 18),),
+                    children: [
+                      IconButton(onPressed: (){
+                        Get.back();
+                      }, icon: const Icon(Icons.arrow_back_ios, color: Colors.white,)),
+                      const Text("Login", style: TextStyle(color: Colors.white, fontSize: 40),),
+                      const SizedBox(height: 5,),
+                      const Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 18),),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
                 Expanded(
                   child: Container(
                     decoration: const BoxDecoration(
@@ -48,10 +50,10 @@ class LoginPage extends StatelessWidget {
                     ),
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: const EdgeInsets.all(30),
+                        padding: const EdgeInsets.fromLTRB(30, 5, 30, 30),
                         child: Column(
                           children: <Widget>[
-                            const SizedBox(height: 60,),
+                            const SizedBox(height: 40,),
                             Container(
                               decoration: BoxDecoration(
                                   color: Colors.white,
