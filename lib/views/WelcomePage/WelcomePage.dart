@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grid_view_builder_in_flutter/views/login/loginPage.dart';
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
@@ -8,7 +10,7 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   List images = [
-    "w2.jpg",
+    "w5.jpg",
     "w3.jpg",
   ];
   @override
@@ -30,17 +32,21 @@ class _WelcomePageState extends State<WelcomePage> {
               )
             ),
             child: Container(
-              margin: const EdgeInsets.only(left: 20, top: 50,right: 20),
-              child: Row(
+              margin: const EdgeInsets.only(left: 15, top: 50,right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    children: const [
-                      AppText(text: 'Trip', color: Colors.white, size: 30,),
-                      AppText(text: 'Mountains', color: Colors.black45, size: 20,),
-                      SizedBox(height: 10,),
-                      AppSmallText(text: 'The journey of a thousand\n miles begins with a single step.' , color: Colors.white, size: 14,),
-                    ],
-                  ),
+                  const AppText(text: 'Trip', color: Colors.white, size: 35,),
+                  const AppText(text: 'Mountains', color: Colors.black45, size: 20,),
+                  const SizedBox(height: 10,),
+                  const AppSmallText(text: 'The journey of a thousand\n miles begins with a single step.' , color: Colors.white, size: 14,),
+                  const SizedBox(height: 20,),
+                  ResponsiveButton(text: 'Welcome' , width: 140,
+                      onPress: (){
+                        print("1");
+                        Get.to(const LoginPage());
+                  }),
+
                 ],
               ),
             ),
@@ -81,6 +87,37 @@ class AppSmallText extends StatelessWidget {
         color: color,
         fontSize: size,
     ),
+    );
+  }
+}
+class ResponsiveButton extends StatelessWidget {
+  final bool? isResponsive;
+  final double? width;
+  final String text;
+  final Function onPress;
+  const ResponsiveButton({Key? key,this.isResponsive=false,this.width, required this.text, required this.onPress}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ()=>onPress,
+      child: Container(
+        width: width,
+        height: 60,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.transparent,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(text, style: const TextStyle(color: Colors.black, fontSize: 18),),
+            Image.asset("images/buttonApp.png", color: Colors.white,),
+
+        ],
+        ),
+      ),
     );
   }
 }
