@@ -146,7 +146,7 @@ class MyHomePage extends StatelessWidget {
 
                 }),
           )),
-          Expanded(child: CustomTabBar())
+          const Expanded(child: CustomTabBar())
 
         ],
       ),
