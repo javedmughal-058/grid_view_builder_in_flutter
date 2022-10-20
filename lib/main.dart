@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grid_view_builder_in_flutter/Controllers/Controller.dart';
+import 'package:grid_view_builder_in_flutter/views/WelcomePage/WelcomePage.dart';
 import 'package:grid_view_builder_in_flutter/views/about.dart';
 import 'package:grid_view_builder_in_flutter/views/contact.dart';
 import 'package:grid_view_builder_in_flutter/views/detail.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      home: const LoginPage(),
+      home: const WelcomePage(),
       routes: {
         "/About" : (context) =>const AboutPage(),
         "/Setting" : (context) => const SettingPage(),
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         "/detail" : (context) =>  customTableView(),
         "/verified" : (context) => const verifiedPage(),
         "/contact" : (context) => const contactPage(),
+        "/login" : (context) => const LoginPage(),
       }
 
     );
