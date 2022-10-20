@@ -10,8 +10,17 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textValue = Get.arguments.toString();
-    return Scaffold(
-      appBar: AppBar(title: Text(textValue),),
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,elevation: 0.0,
+            leading: IconButton(
+                onPressed: ()=>Navigator.of(context).pop(),
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.indigo)),
+            title: Text(textValue, style: const TextStyle(color: Colors.black),),
+            ),
+      ),
     );
   }
 }
