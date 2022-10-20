@@ -24,6 +24,7 @@ class _WelcomePageState extends State<WelcomePage> {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index){
           return Container(
+            //margin: EdgeInsets.all(1),
             width: double.maxFinite,
             height: double.maxFinite,
             decoration: BoxDecoration(
