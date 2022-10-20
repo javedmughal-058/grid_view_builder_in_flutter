@@ -95,7 +95,16 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 20,),
-                            const Text("Forgot Password?", style:  TextStyle(color: Colors.grey),),
+                            GestureDetector(
+                              onTap: (){},
+                              child: const Text("Forgot Password?",
+                                style:  TextStyle(
+                                  color: Colors.grey,
+                                  fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.black
+                                ),),
+                            ),
                             const SizedBox(height: 20,),
                             GestureDetector(
                               onTap: (){
@@ -111,7 +120,6 @@ class LoginPage extends StatelessWidget {
                                         colors: [
                                           Colors.blue,
                                           Colors.indigo,
-
                                         ]
                                     )
                                 ),
@@ -121,7 +129,7 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 20,),
-                            const Text("Continue with social media", style: TextStyle(color: Colors.grey),),
+                            const Text("Continue with", style: TextStyle(color: Colors.grey),),
                             const SizedBox(height: 30,),
                             Row(
                               children: <Widget>[
