@@ -26,7 +26,7 @@ class _SettingPageState extends State<SettingPage> {
             child: ListView.separated(
                 itemCount: _colorController.colorsList.length,
                 separatorBuilder: (BuildContext context,int index){
-                  return Divider(color: Colors.black26,);
+                  return const Divider(color: Colors.black26,);
                 },
                 itemBuilder: (BuildContext context,int index){
                   return ListTile(
